@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>Internet of "Little" Things</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Aplicativo Laboratório de ciência, desenvolvido utilizando o conceito de internet of things">
+		<meta name="author" content="Ezequiel França dos Santos">
+
+		<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+		<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+		<!--script src="js/less-1.3.3.min.js"></script-->
+		<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/bootstrap-combobox.css" media="screen" rel="stylesheet" type="text/css">
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<![endif]-->
+
+		<!-- Fav and touch icons -->
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+		<link rel="shortcut icon" href="img/favicon.png">
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/scripts.js"></script>
+		<script src="js/raphael.2.1.0.min.js"></script>
+		<script src="js/justgage.1.0.1.min.js"></script>
+
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="row clearfix">
+						<div class="col-md-12 column">
+							<div class="page-header">
+								<h1><img src="img/logo.png" alt="Smiley boy" >Internet of "Little" Things <small>Ciência para crianças</small></h1>
+							</div>
+						</div>
+					</div>
+					<ul class="nav nav-pills">
+						<li class="active">
+							<a href="index.html">Home</a>
+						</li>
+						<div class="jumbotron">
+							<div class="container">
+								<div class="row clearfix">
+									<div class="col-md-4 column">
+										<h2> Temperatura </h2>
+										<p>
+											    <div id="gauge-temperatura" class="300x240px"></div>
+										</p>
+										<p>
+										</p>
+									</div>
+									<div class="col-md-4 column">
+										<h2> Umidade </h2>
+										<p>
+											    <div id="gauge-umidade" class="300x240px"></div>
+										</p>
+										<p>
+										</p>
+									</div>
+									<div class="col-md-4 column"></div>
+								</div>
+							</div>
+							<h1>Ponto de Orvalho</h1>
+							<p class="lead">
+								O ponto de orvalho é a temperatura à qual o ar deve ser arrefecido para que ocorra a saturação, sempre que não haja uma mudança na água contida. O ponto de orvalho é uma medida importante utilizada para prever a formação de orvalho, gelo e nevoeiro.
+								Se a temperatura e o ponto de orvalho estão próximos à tarde quando o ar começa  a arrefecer, é provável que se forme nevoeiro durante a noite.
+
+								Há uma simples aproximação que permite uma conversão entre o ponto de orvalho, temperature e umidade relativa. Essa abordagem tem uma precisão de ±1°C enquanto a umidade está acima de 50%:
+										<p>
+											    <div id="gauge-pontodeorvalho" class="300x240px"></div>
+										</p>
+							</p>
+							<button type="button" class="btn btn-primary btn-default btn-block" onclick="">
+								CÁLCULO PONTO DE ORVALHO
+							</button>
+
+							<p> </p>
+								<h1>Risco de Fogo</h1>
+								<p class="lead">
+									O princípio deste Risco de Fogo (RF) é o de que quanto mais dias seguidos sem chuva, maior o risco
+									de queima da vegetação; adicionalmente, são incluídos no cálculo efeitos do tipo e do ciclo natural de
+									desfolhamento da vegetação, temperatura máxima e umidade relativa mínima do ar diárias, assim como a
+									presença de fogo na área de interesse. O RF foi desenvolvido internamente no CPTEC/INPE, com base na
+									análise da ocorrência de centenas de milhares de queimadas/incêndios nos principais biomas (tipos de
+									vegetação) do País durante a última década, em função das condições e históricos meteorológicos na região
+									de cada evento, este RF é parte do Sistema de Queimadas e
+									Incêndios Florestais do INPE.
+								</p>
+
+							<div class="row">
+								<form class="form-inline">
+									<fieldset>
+										<legend>
+											Selecione o tipo de vegetação:
+										</legend>
+										<select class="combobox" name="inline" id="valorlocal">
+											<option value="1.5">Ombrófila densa; alagados</option>
+											<option value="1.72">Florestas Decíduas e sazonais</option>
+											<option value="2">Florestas Contato; Campinarana</option>
+											<option value="2.4">Savana arbórea; Caatinga fechada</option>
+											<option value="3">Savana Caatinga aberta</option>
+											<option value="4">Agricultura e diversos</option>
+											<option value="6">Pastagens Gramíneas</option>
+										</select>
+									</fieldset>
+								</form>
+						<button type="button" class="btn btn-info btn-default btn-block" value="valorlocal" onclick="graudeRiscodeFogo();">
+							CÁLCULO RISCO DE FOGO BÁSICO
+						</button>
+						<div id="riscodefogo">
+        Grau de Risco: <span class="label label-default"></span>
+      </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer">
+				<p>
+					Campus Party 2014 #cpbr7
+				</p>
+			</div>
+			<script src="js/bootstrap-combobox.js" type="text/javascript"></script>
+			<script src="js/quimica.js"></script>
+	</body>
+</html>
